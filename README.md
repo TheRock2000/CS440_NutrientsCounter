@@ -8,9 +8,7 @@ npm install
 
 ## 2) Configure env
 
-```bash
-cp .env
-```
+set `DATABASE_URL` and `PORT` to configure database location and which server port to listen on
 
 Update `DATABASE_URL` as needed (default local DB: `health_app`).
 
