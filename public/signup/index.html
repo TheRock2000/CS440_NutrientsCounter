@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up | Health App</title>
+    <link rel="stylesheet" href="/styles/index.css" />
+  </head>
+  <body>
+    <main class="container">
+      <div class="header-row">
+        <h1>Sign Up</h1>
+        <div class="actions">
+          <button id="login-btn" type="button">Login</button>
+        </div>
+      </div>
+
+      <form id="signup-form" class="account-details" autocomplete="on">
+        <p>
+          <label for="display_name">Display name</label><br />
+          <input id="display_name" name="display_name" type="text" required />
+        </p>
+        <p>
+          <label for="username">Username</label><br />
+          <input id="username" name="username" type="text" required />
+        </p>
+        <p>
+          <label for="password">Password</label><br />
+          <input id="password" name="password" type="password" required />
+        </p>
+        <div class="actions">
+          <button type="submit">Create account</button>
+        </div>
+        <p id="message"></p>
+      </form>
+    </main>
+
+    <script src="/signup/index.js"></script>
+  </body>
+</html>

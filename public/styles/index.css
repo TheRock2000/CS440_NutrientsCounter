@@ -1,0 +1,51 @@
+:root {
+  --bg: #f5f7fb;
+  --text: #1f2937;
+  --accent: #0f766e;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+.container {
+  max-width: 760px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+h1 {
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.account-details {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+button {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+}
