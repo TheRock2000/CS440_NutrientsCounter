@@ -1,33 +1,45 @@
-# CS440_NutrientsCounter
+# CS440 Nutrient Tracker Architecture Samples
 
-## 1) Install
+This repository now includes three local-only implementations of the same small feature slice for the health app:
+
+- `architectures/layered`
+- `architectures/mvc`
+- `architectures/hexagonal`
+
+Each implementation uses:
+
+- Node.js + Express
+- plain HTML/CSS/JavaScript
+- SQLite via the `sqlite3` package
+- no external database server
+
+## Implemented Feature Slice
+
+Each architecture implements the same two features:
+
+- account signup/login/logout with server-managed sessions
+- meal tracking with a weekly nutrition summary
+
+The larger Project 1 scope is intentionally not implemented here.
+
+## Install
 
 ```bash
 npm install
 ```
 
-## 2) Configure env
-
-set `DATABASE_URL` and `PORT` to configure database location and which server port to listen on
-
-Update `DATABASE_URL` as needed (default local DB: `health_app`).
-
-## 3) Optional DB init
+## Run
 
 ```bash
-psql "$DATABASE_URL" -f db/init.sql
+npm run start:layered
+npm run start:mvc
+npm run start:hexagonal
 ```
 
-## 4) Run
+Default ports:
 
-```bash
-npm run dev
-```
+- Layered: `3101`
+- MVC: `3102`
+- Hexagonal: `3103`
 
-Open `http://localhost:3000`.
-
-## Initial schema
-
-`db/init.sql` creates one table:
-
-- `accounts(username, password, display_name)`
+Each implementation creates its own SQLite file under `data/` automatically.

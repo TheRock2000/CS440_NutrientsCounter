@@ -2,11 +2,17 @@
   "name": "cs440-health-app",
   "version": "0.1.0",
   "private": true,
-  "description": "Very basic full-stack skeleton with Node.js, Express, PostgreSQL, and plain HTML/CSS.",
-  "main": "src/server.js",
+  "description": "Local-only architecture comparison examples for a calorie tracker using Node.js, Express, SQLite, and plain HTML/CSS/JS.",
+  "main": "architectures/layered/server.js",
   "scripts": {
-    "dev": "node --watch src/server.js",
-    "start": "node src/server.js",
+    "dev": "npm run dev:layered",
+    "dev:layered": "PORT=3101 node --watch architectures/layered/server.js",
+    "dev:mvc": "PORT=3102 node --watch architectures/mvc/server.js",
+    "dev:hexagonal": "PORT=3103 node --watch architectures/hexagonal/server.js",
+    "start": "npm run start:layered",
+    "start:layered": "PORT=3101 node architectures/layered/server.js",
+    "start:mvc": "PORT=3102 node architectures/mvc/server.js",
+    "start:hexagonal": "PORT=3103 node architectures/hexagonal/server.js",
     "lint": "eslint .",
     "build": "node -e \"console.log('Build check complete')\""
   },
@@ -16,11 +22,11 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.21.2",
-    "pg": "^8.13.3"
+    "sqlite3": "^6.0.1"
   },
   "devDependencies": {
-    "eslint": "^9.20.1",
     "@eslint/js": "^9.20.0",
+    "eslint": "^9.20.1",
     "globals": "^15.15.0"
   }
 }

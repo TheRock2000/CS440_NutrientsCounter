@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="layout stack">
+      <header class="topbar">
+        <div class="brand">
+          <h1>Create Account</h1>
+          <p id="architecture-label">Loading architecture...</p>
+        </div>
+        <div class="actions">
+          <a class="button-link secondary" href="/">Home</a>
+          <a class="button-link secondary" href="/login">Login</a>
+        </div>
+      </header>
+
+      <form id="signup-form" class="panel stack">
+        <div>
+          <label for="displayName">Display Name</label>
+          <input id="displayName" name="displayName" required />
+        </div>
+        <div>
+          <label for="username">Username</label>
+          <input id="username" name="username" required />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" minlength="6" required />
+        </div>
+        <div class="actions">
+          <button type="submit">Create Account</button>
+        </div>
+        <p id="message" class="message"></p>
+      </form>
+    </main>
+
+    <script src="/signup/index.js"></script>
+  </body>
+</html>

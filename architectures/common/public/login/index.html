@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="layout stack">
+      <header class="topbar">
+        <div class="brand">
+          <h1>Login</h1>
+          <p id="architecture-label">Loading architecture...</p>
+        </div>
+        <div class="actions">
+          <a class="button-link secondary" href="/">Home</a>
+          <a class="button-link secondary" href="/signup">Create Account</a>
+        </div>
+      </header>
+
+      <form id="login-form" class="panel stack">
+        <div>
+          <label for="username">Username</label>
+          <input id="username" name="username" required />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required />
+        </div>
+        <div class="actions">
+          <button type="submit">Login</button>
+        </div>
+        <p id="message" class="message"></p>
+      </form>
+    </main>
+
+    <script src="/login/index.js"></script>
+  </body>
+</html>
