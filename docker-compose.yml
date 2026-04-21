@@ -1,0 +1,56 @@
+services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: api-gateway/Dockerfile
+    environment:
+      PORT: 3000
+      BFF_URL: http://bff:3000
+      USER_SERVICE_URL: http://user-management:3000
+      HEALTH_STATS_SERVICE_URL: http://health-stats:3000
+    depends_on:
+      - bff
+      - user-management
+      - health-stats
+    ports:
+      - "3000:3000"
+
+  bff:
+    build:
+      context: .
+      dockerfile: services/bff/Dockerfile
+    environment:
+      PORT: 3000
+      SQLITE_PATH: /data/bff.sqlite
+      USER_SERVICE_URL: http://user-management:3000
+      HEALTH_STATS_SERVICE_URL: http://health-stats:3000
+    depends_on:
+      - user-management
+      - health-stats
+    volumes:
+      - bff-data:/data
+
+  user-management:
+    build:
+      context: .
+      dockerfile: services/user-management/Dockerfile
+    environment:
+      PORT: 3000
+      SQLITE_PATH: /data/user-management.sqlite
+    volumes:
+      - user-data:/data
+
+  health-stats:
+    build:
+      context: .
+      dockerfile: services/health-stats/Dockerfile
+    environment:
+      PORT: 3000
+      SQLITE_PATH: /data/health-stats.sqlite
+    volumes:
+      - health-stats-data:/data
+
+volumes:
+  user-data:
+  health-stats-data:
+  bff-data:

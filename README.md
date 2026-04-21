@@ -1,26 +1,13 @@
-# CS440 Nutrient Tracker Architecture Samples
+# CS440 Health App Microservices
 
-This repository now includes three local-only implementations of the same small feature slice for the health app:
+This project replaces the architecture comparison example with a local microservices deployment:
 
-- `architectures/layered`
-- `architectures/mvc`
-- `architectures/hexagonal`
+- `user-management`: account creation and password verification.
+- `health-stats`: meal entries and weekly nutrition summaries.
+- `bff`: browser-facing backend, static UI, and session storage.
+- `api-gateway`: external entry point and request router.
 
-Each implementation uses:
-
-- Node.js + Express
-- plain HTML/CSS/JavaScript
-- SQLite via the `sqlite3` package
-- no external database server
-
-## Implemented Feature Slice
-
-Each architecture implements the same two features:
-
-- account signup/login/logout with server-managed sessions
-- meal tracking with a weekly nutrition summary
-
-The larger Project 1 scope is intentionally not implemented here.
+Each stateful service owns a separate SQLite database. Docker Compose mounts those databases as independent volumes so services do not share storage.
 
 ## Install
 
@@ -28,18 +15,47 @@ The larger Project 1 scope is intentionally not implemented here.
 npm install
 ```
 
-## Run
+## Run With Docker Compose
 
 ```bash
-npm run start:layered
-npm run start:mvc
-npm run start:hexagonal
+docker compose up --build
 ```
 
-Default ports:
+Open `http://localhost:3000`.
 
-- Layered: `3101`
-- MVC: `3102`
-- Hexagonal: `3103`
+## Run Locally Without Docker
 
-Each implementation creates its own SQLite file under `data/` automatically.
+Start each service in a separate terminal:
+
+```bash
+npm run dev:user-management
+npm run dev:health-stats
+npm run dev:bff
+npm run dev:gateway
+```
+
+The API Gateway listens on `http://localhost:3000`.
+
+## API Routes
+
+Browser traffic goes through the API Gateway:
+
+- `/`, `/login`, `/signup`, `/tracker`
+- `/api/session`
+- `/api/signup`
+- `/api/login`
+- `/api/logout`
+- `/api/meals`
+- `/api/summary/weekly`
+
+The gateway also exposes service namespaces for testing:
+
+- `/api/users/*` routes to `user-management`
+- `/api/health-stats/*` routes to `health-stats`
+
+## Verify
+
+```bash
+npm test
+npm run lint
+```
